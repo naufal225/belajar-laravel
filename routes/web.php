@@ -21,7 +21,10 @@ Route::get('/', function () {
 
 Route::get('/about', function () {
     return view("about", [
-        "title" => "About"
+        "title" => "About",
+        "name" => "Naufal Ma'ruf Ashrori",
+        "email" => "naufalmarufashrori225@gmail.com",
+        "profil" => "logo.png"
     ]);
 });
 
