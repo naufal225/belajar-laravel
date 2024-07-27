@@ -1,9 +1,8 @@
-
-@extends('layouts.main')
+@extends("layouts.main")
 
 @section('container')
-    <h1 class="mb-5 ">Blog Saya</h1>
-    @foreach ($posts as $post)
+    <h1>By {{ $author }}</h1>
+    @foreach($posts as $post)
         <div class="p-5 border-bottom border-2">
             <h2>
                 <a class="text-decoration-none" href="blog/{{ $post->slug }}">{{ $post->title }}</a>

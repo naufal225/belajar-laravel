@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use App\Models\Post;
 use App\Http\Requests\StorePostRequest;
 use App\Http\Requests\UpdatePostRequest;
+use App\Models\Category;
+use App\Models\User;
 
 class PostController extends Controller
 {
@@ -29,7 +31,23 @@ class PostController extends Controller
 
         return view("post", [
             "post" => $post,
-            "title" => "Single Post"
+            "title" => $post->slug
+        ]);
+    }
+
+    public function detail(Category $category) {
+        return view('category', [
+            "title" => $category->slug,
+            "category" => $category,
+            "posts" => $category->posts
+        ]);
+    }
+
+    public function author(User $user) {
+        return view('authorPost', [
+            'title' => "Author Posts",
+            'posts' => $user->posts,
+            "author" => $user->name
         ]);
     }
 

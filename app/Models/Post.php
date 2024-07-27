@@ -34,5 +34,22 @@ class Post extends Model
     //     return $posts->firstWhere('slug', $slug);
     // }
 
-    protected $guarded = ["id"];
+    protected $fillable = [
+        'title',
+        'category_id',
+        'user_id',
+        'slug',
+        'excerpt',
+        'body',
+        'author',
+        'published_at',
+    ];
+
+    public function category() {
+        return $this->belongsTo(Category::class, "category_id");
+    }
+
+    public function user() {
+        return $this->belongsTo(User::class, "user_id");
+    }
 }

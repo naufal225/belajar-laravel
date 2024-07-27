@@ -9,6 +9,7 @@
           <a class="nav-link {{ ($title == "Home") ? "active" : "" }}" aria-current="page" href="/">Home</a>
           <a class="nav-link {{ ($title == "About") ? "active" : "" }}" href="/about">About</a>
           <a class="nav-link {{ ($title == "Blog") ? "active" : "" }}" href="/blog">My Blog</a>
+          <a class="nav-link {{ ($title == "Post Categories") ? "active" : "" }}" href="/categories">Categories</a>
         </div>
       </div>
     </div>
