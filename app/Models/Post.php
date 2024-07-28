@@ -49,6 +49,10 @@ class Post extends Model
 
     protected $load = ['category', 'user'];
 
+    public function scopeFilter($query) {
+        return $query->where('title', "like", "%" . request('search') .  "%")->orWhere('body', 'like', '%' . request('search') . '%');
+    }
+
     public function category() {
         return $this->belongsTo(Category::class, "category_id");
     }

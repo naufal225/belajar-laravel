@@ -15,11 +15,10 @@ class PostController extends Controller
      */
     public function index()
     {
-        $blog_posts = Post::with(['user', 'category'])->latest()->get();
 
         return view("blog", [
             "title" => "Blog",
-            "posts" => $blog_posts
+            "posts" => Post::latest()->filter()->paginate(5)
         ]);
     }
 
