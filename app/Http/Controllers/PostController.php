@@ -15,7 +15,7 @@ class PostController extends Controller
      */
     public function index()
     {
-        $blog_posts = Post::all();
+        $blog_posts = Post::with(['user', 'category'])->latest()->get();
 
         return view("blog", [
             "title" => "Blog",
@@ -36,15 +36,15 @@ class PostController extends Controller
     }
 
     public function detail(Category $category) {
-        return view('category', [
-            "title" => $category->slug,
+        return view('blog', [
+            "title" => $category->name,
             "category" => $category,
             "posts" => $category->posts
         ]);
     }
 
     public function author(User $user) {
-        return view('authorPost', [
+        return view('blog', [
             'title' => "Author Posts",
             'posts' => $user->posts,
             "author" => $user->name

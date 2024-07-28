@@ -45,6 +45,10 @@ class Post extends Model
         'published_at',
     ];
 
+    protected $with = ['category', 'user'];
+
+    protected $load = ['category', 'user'];
+
     public function category() {
         return $this->belongsTo(Category::class, "category_id");
     }
