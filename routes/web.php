@@ -1,7 +1,9 @@
 <?php
 
+use App\Http\Controllers\LoginController;
 use App\Models\Post;
 use App\Http\Controllers\PostController;
+use App\Http\Controllers\RegisterController;
 use App\Models\Category;
 use Illuminate\Support\Facades\Route;
 
@@ -47,4 +49,8 @@ Route::get('/author/{user:name}', [PostController::class, "author"]);
 
 Route::get('/category/{category:slug}', [PostController::class, "detail"]);
 
+Route::get('/login', [LoginController::class, "index"]);
 
+Route::get('/register', [RegisterController::class, "index"]);
+
+Route::post('/register', [RegisterController::class, "store"]);

@@ -28,7 +28,7 @@
               <p class="card-text">{{ $posts[0]->excerpt }}</p>
               <p class="card-text"></p>
 
-              <a class="text-decoration-none mt-5" href="/blog/{{ $posts[0]->slug }}">Read More...</a>
+              <a class="btn btn-primary text-decoration-none mt-5" href="/blog/{{ $posts[0]->slug }}">Read More...</a>
             </div>
         </div>
     @else
