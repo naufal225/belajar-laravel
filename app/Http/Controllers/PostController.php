@@ -38,14 +38,14 @@ class PostController extends Controller
         return view('blog', [
             "title" => $category->name,
             "category" => $category,
-            "posts" => $category->posts
+            "posts" => $category->posts()->paginate(5)
         ]);
     }
 
     public function author(User $user) {
         return view('blog', [
             'title' => "Author Posts",
-            'posts' => $user->posts,
+            'posts' => $user->posts()->paginate(5),
             "author" => $user->name
         ]);
     }

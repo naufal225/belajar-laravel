@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\LoginController;
 use App\Models\Post;
 use App\Http\Controllers\PostController;
@@ -49,8 +50,12 @@ Route::get('/author/{user:name}', [PostController::class, "author"]);
 
 Route::get('/category/{category:slug}', [PostController::class, "detail"]);
 
-Route::get('/login', [LoginController::class, "index"]);
+Route::get('/login', [LoginController::class, "index"])->middleware('guest');
 
 Route::get('/register', [RegisterController::class, "index"]);
 
 Route::post('/register', [RegisterController::class, "store"]);
+
+Route::post('/login', [LoginController::class, "authenticate"]);
+
+Route::get('/dashboard', [DashboardController::class, "index"]);
