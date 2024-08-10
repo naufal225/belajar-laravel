@@ -12,17 +12,19 @@
           <a class="nav-link {{ ($title == "Post Categories") ? "active" : "" }}" href="/categories">Categories</a>
         </div>
         @auth
-        <div class="navbar-nav">
+        <div class="navbar-nav ms-auto">
 
           <li class="nav-item dropdown">
-            <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+            <a class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-expanded="false">
               Welcome Back! {{ Auth::user()->name }}
             </a>
             <div class="dropdown-menu">
-              <a class="dropdown-item" href="/dashboard">Dashboard</a>
-              <a class="dropdown-item" href="/logout">Logout</a>
+              <a class="dropdown-item" href="/dashboard"><i class="bi bi-layout-text-sidebar-reverse"></i>Dashboard</a>
               <div class="dropdown-divider"></div>
-              <a class="dropdown-item" href="#">Something else here</a>
+              <form action="/logout" method="post">
+                @csrf 
+                <button type="submit" class="dropdown-item"><i class="bi bi-box-arrow-right"></i>Logout</button>
+              </form>
             </div>
           </li>
         </div>
