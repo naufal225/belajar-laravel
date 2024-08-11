@@ -7,8 +7,12 @@
             <h1>{{ $post->title }}</h1>
 
             <a href="/dashboard" class="btn btn-success my-3">Back To Dashboard</a>
-
-            <h5><a class="text-decoration-none" href="/category/{{ $post->category->slug }}">{{ $post->category->name }}</a></h5>
+            <a href="" class="badge bg-warning text-white"><span data-feather="edit"></span></a>
+            <form action="/dashboard/posts/{{ $post->slug }}" method="post" class="d-inline">
+              @method("delete")
+              @csrf
+              <button class="badge bg-danger text-white border-0" onclick="return confirm('Are You Sure?')"><span data-feather="x-circle"></button>
+            </form>
             <p>{!! $post->body !!}</p>
         </div>
     </div>

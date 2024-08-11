@@ -8,23 +8,52 @@
               @csrf
                 <div class="form-group">
                   <label for="title">Title</label>
-                  <input type="text" class="form-control" id="title" name="title" placeholder="">
+                  <input type="text" class="form-control @error('title') is-invalid @enderror" id="title" name="title" placeholder="" value={{ old('title') }}>
+                  @error('title')
+                    <div class="invalid-feedback">
+                      {{ $message }}
+                    </div>
+                  @enderror
                 </div>
                 <div class="form-group">
                   <label for="slug">Slug</label>
-                  <input type="text" class="form-control" id="slug" placeholder="" disabled readonly>
+                  <input type="text" class="form-control @error('slug') is-invalid @enderror" id="slug" placeholder="" name="slug" value={{ old('slug') }}>
+                  @error('slug')
+                    <div class="invalid-feedback">
+                      {{ $message }}
+                    </div>
+                  @enderror
                 </div>
                 <div class="form-group">
-                  <label for="category">Slug</label>
-                  <select class="custom-select" id="category" name="category_id">
+                  <label for="category">Category</label>
+                  <select class="custom-select @error('category_id') is-invalid @enderror" id="category" name="category_id" value={{ old('category_id') }}>
                     @foreach ($categories as $category)
+                      @if(old('category_id') === $category->id)
+                        <option value="{{ $category->id }}" selected>{{ $category->name }}</option>
+                      @else
                         <option value="{{ $category->id }}">{{ $category->name }}</option>
+                      @endif
                     @endforeach
                   </select>
+                  @error('category_id')
+                    <div class="invalid-feedback">
+                      {{ $message }}
+                    </div>
+                  @enderror
+                </div>
+                <div class="form-group">
+                  <input id="body" type="hidden" name="body">
+                  <trix-editor class="@error('body') is-invalid @enderror" input="body" value={{ old('body') }}></trix-editor>
+                  @error('body')
+                    <div class="invalid-feedback">
+                      {{ $message }}
+                    </div>
+                  @enderror
                 </div>
                 <button type="submit" class="btn btn-primary">Add Post</button>
               </form>
         </div>
+        
     </div>
 
     <script>
@@ -45,6 +74,10 @@
               })
               .catch(error => console.error('Error:', error));
           });
+      });
+
+      document.addEventListener('trix-file-accept', function(e) {
+        e.preventDefault();
       });
     </script>
 @endsection

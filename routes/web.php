@@ -65,7 +65,7 @@ Route::get('/dashboard', function() {
     return view('dashboard.index', [
         "title" => "Dashboard",
         "active" => "dashboard",
-        "posts" => Post::where('user_id', Auth::user()->id)->get()
+        "posts" => Post::where('user_id', Auth::user()->id)->latest()->get()
     ]);
 })->middleware("auth");
 
