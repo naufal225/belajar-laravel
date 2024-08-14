@@ -1,4 +1,4 @@
-<div class="col-md-3 col-lg-2 d-md-block bg-light sidebar collapse" style="min-height: 100vh" id="sidebarMenu">
+<div class="col-md-3 col-lg-2 d-md-block bg-light sidebar" style="min-height: 100vh" id="sidebarMenu">
   <div class="position-sticky">
     <ul class="nav flex-column">
       <li class="nav-item">

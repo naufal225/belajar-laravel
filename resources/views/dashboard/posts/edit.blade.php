@@ -4,11 +4,13 @@
     <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
         <div class="col-lg-8">
             
-            <form method="POST" action="/dashboard/posts" enctype="multipart/form-data">
+            <form method="POST" action="/dashboard/posts/{{ $post->slug }}">
+                @method("put")
               @csrf
                 <div class="form-group">
-                  <label for="title">Add Post</label>
-                  <input type="text" class="form-control @error('title') is-invalid @enderror" id="title" name="title" placeholder="" value={{ old('title') }}>
+                  <label for="title">Update Post</label>
+                  <input type="hidden" name="id" value="{{ $post->id }}">
+                  <input type="text" class="form-control @error('title') is-invalid @enderror" id="title" name="title" placeholder="" value="{{ old("title", $post->title)}}">
                   @error('title')
                     <div class="invalid-feedback">
                       {{ $message }}
@@ -17,7 +19,7 @@
                 </div>
                 <div class="form-group">
                   <label for="slug">Slug</label>
-                  <input type="text" class="form-control @error('slug') is-invalid @enderror" id="slug" placeholder="" name="slug" value={{ old('slug') }}>
+                  <input type="text" class="form-control @error('slug') is-invalid @enderror" id="slug" placeholder="" name="slug" value="{{ old('slug', $post->slug) }}">
                   @error('slug')
                     <div class="invalid-feedback">
                       {{ $message }}
@@ -26,10 +28,13 @@
                 </div>
                 <div class="form-group">
                   <label for="category">Category</label>
-                  <select class="custom-select @error('category_id') is-invalid @enderror" id="category" name="category_id" value={{ old('category_id') }}>
+                  <select class="custom-select @error('category_id') is-invalid @enderror" id="category" name="category_id" value="{{ old('category_id', $post->category_id) }}">
                     @foreach ($categories as $category)
                       @if(old('category_id') === $category->id)
                         <option value="{{ $category->id }}" selected>{{ $category->name }}</option>
+                      @elseif($category->id == $post->category_id)
+                      <option value="{{ $category->id }}" selected>{{ $category->name }}</option>
+
                       @else
                         <option value="{{ $category->id }}">{{ $category->name }}</option>
                       @endif
@@ -41,25 +46,17 @@
                     </div>
                   @enderror
                 </div>
-                <div class="input-group mb-3">
-                  <div class="input-group-prepend">
-                    <span class="input-group-text" id="inputGroupFileAddon01">Upload</span>
-                  </div>
-                  <div class="custom-file">
-                    <input type="file" class="custom-file-input" id="inputGroupFile01" name="image" aria-describedby="inputGroupFileAddon01">
-                    <label class="custom-file-label" for="inputGroupFile01">Choose file</label>
-                  </div>
-                </div>
+                
                 <div class="form-group">
-                  <input id="body" type="hidden" name="body">
-                  <trix-editor class="@error('body') is-invalid @enderror" input="body" value={{ old('body') }}></trix-editor>
+                  <input id="body" type="hidden" name="body" value="{{ old('body', $post->body) }}">
+                  <trix-editor class="@error('body') is-invalid @enderror" input="body" style="max-height: 200px; overflow-y:scroll;"></trix-editor>
                   @error('body')
                     <div class="invalid-feedback">
                       {{ $message }}
                     </div>
                   @enderror
                 </div>
-                <button type="submit" class="btn btn-primary">Add Post</button>
+                <button type="submit" class="btn btn-primary">Update Post</button>
               </form>
         </div>
         
@@ -88,13 +85,5 @@
       document.addEventListener('trix-file-accept', function(e) {
         e.preventDefault();
       });
-
-      document.querySelector('.custom-file-input').addEventListener("change", function(e) {
-        var fileInput = e.eventTarget;
-        var fileName = fileInput.files[0].name;
-        console.log('File Name:', fileName); // Debugging
-        var label = fileInput.nextElementSibling;
-        label.textContent = fileName;
-      })
     </script>
 @endsection

@@ -34,6 +34,10 @@ class DashboardPostController extends Controller
      */
     public function store(Request $request)
     {
+        $path = $request->file('image')->store('post-images');
+
+        $fileName = basename($path);
+
         $validate = $request->validate([
             "title" => "required|max:255",
             "slug" => "required|unique:posts",
@@ -67,7 +71,10 @@ class DashboardPostController extends Controller
      */
     public function edit(Post $post)
     {
-        //
+        return view('dashboard.posts.edit', [
+            "post" => $post,
+            "categories" => Category::all()
+        ]);
     }
 
     /**
@@ -75,7 +82,22 @@ class DashboardPostController extends Controller
      */
     public function update(Request $request, Post $post)
     {
-        //
+        $rules = [
+            "title" => "required|max:255",
+            "category_id" => "required",
+            "body" => "required"
+        ];
+
+        if($post->slug != $request->slug) {
+            $rules["slug"] = "required|unique:posts";
+        }
+
+        $validate = $request->validate($rules);
+
+        Post::where("id", $request->id)
+            ->update($validate);
+
+        return redirect('/dashboard')->with("success", "One post has been updated");
     }
 
     /**
