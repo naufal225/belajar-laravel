@@ -19,12 +19,12 @@
 
     @if($posts->count())
         <div class="card mb-5 text-center">
-            <img class="card-img-top" src="https://api.unsplash.com/@naufal225/500x400/?{{ $posts[0]->category->name }}" alt="Card image cap">
+            <img class="card-img-top" src="/storage/{{ $posts[0]->image }}" alt="Card image cap">
             <div class="card-body">
               <h5 class="card-title">
                 <a class="text-decoration-none text-black" href="/blog/{{ $posts[0]->slug }}">{{ $posts[0]->title }}</a>
               </h5>
-              <p>By {{ $posts[0]->user->name }} in {{ $posts[0]->category->name }} <small class="text">{{ $posts[0]->created_at->diffForHumans() }}</small></p>
+              <p>By {{ $posts[0]->user->name }} in {{ $posts[0]->category->category }} <small class="text">{{ $posts[0]->created_at->diffForHumans() }}</small></p>
               <p class="card-text">{{ $posts[0]->excerpt }}</p>
               <p class="card-text"></p>
 
@@ -41,7 +41,7 @@
     @foreach ($posts->skip(1) as $post)
             <div class="col-md-3 mb-4">
                 <div class="card">
-                    <img class="card-img-top" src="..." alt="Card image cap">
+                    <img class="card-img-top" src="/storage/{{ $post->image }}" alt="Card image cap">
                     <div class="card-body">
                       <h5 class="card-title">
                         <a class="text-decoration-none" href="/blog/{{ $post->slug }}">{{ $post->title }}</a>
