@@ -46,6 +46,7 @@
                     </div>
                   @enderror
                 </div>
+                <input type="hidden" name="oldImage" value="{{ $post->image }}">
                 <img class="img-preview img-fluid col-5 my-3" @if($post->image) src="/storage/{{ $post->image }}" @endif class="d-block">
                 <div class="input-group mb-3">
                   <div class="input-group-prepend">

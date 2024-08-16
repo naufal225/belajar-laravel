@@ -21,6 +21,7 @@ return new class extends Migration
             $table->string('telp');
             $table->string('city');
             $table->text('reason');
+            $table->boolean('is_admin')->default(false);
             $table->string('password');
             $table->timestamps();
         });
