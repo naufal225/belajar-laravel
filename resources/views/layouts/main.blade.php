@@ -13,7 +13,7 @@
 
     @include('util.navbar')
 
-    <div class="container mt-5">
+    <div class="container mt-5 border-0">
         @yield('container')
     </div>
 

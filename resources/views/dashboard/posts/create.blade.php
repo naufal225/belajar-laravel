@@ -53,7 +53,7 @@
                 </div>
                 <div class="form-group">
                   <input id="body" type="hidden" name="body">
-                  <trix-editor class="@error('body') is-invalid @enderror" input="body" value={{ old('body') }}></trix-editor>
+                  <trix-editor class="@error('body') is-invalid @enderror" input="body" value={{ old('body') }} style="max-height: 200px; overflow-y:scroll;"></trix-editor>
                   @error('body')
                     <div class="invalid-feedback">
                       {{ $message }}

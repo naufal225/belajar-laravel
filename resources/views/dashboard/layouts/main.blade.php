@@ -26,7 +26,7 @@
       }
     </style>
   </head>
-  <body style="overflow-y: hidden">
+  <body>
     
     @include('dashboard.layouts.header')
 

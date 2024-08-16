@@ -33,6 +33,7 @@
                 <tr>
                   <th scope="col">#</th>
                   <th scope="col">Title</th>
+                  <th scope="col">Image</th>
                   <th scope="col">Category</th>
                   <th scope="col">Action</th>
                 </tr>
@@ -42,6 +43,7 @@
                     <tr>
                       <td>{{ $loop->iteration }}</td>
                       <td>{{ $post->title }}</td>
+                      <td><img src="/storage/{{ $post->image }}" style="width: 50px;" alt=""></td>
                       <td>{{ $post->category->name }}</td>
                       <td>
                         <a href="/dashboard/posts/{{ $post->slug }}" class="badge bg-info"><span class="text-white" data-feather="eye"></span></a>

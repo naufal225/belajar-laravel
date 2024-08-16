@@ -25,7 +25,7 @@
                 <a class="text-decoration-none text-black" href="/blog/{{ $posts[0]->slug }}">{{ $posts[0]->title }}</a>
               </h5>
               <p>By {{ $posts[0]->user->name }} in {{ $posts[0]->category->category }} <small class="text">{{ $posts[0]->created_at->diffForHumans() }}</small></p>
-              <p class="card-text">{{ $posts[0]->excerpt }}</p>
+              <p class="card-text">{!! $posts[0]->excerpt !!}</p>
               <p class="card-text"></p>
 
               <a class="btn btn-primary text-decoration-none mt-5" href="/blog/{{ $posts[0]->slug }}">Read More...</a>
