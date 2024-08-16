@@ -21,15 +21,19 @@ class RegisterController extends Controller
             "name" => 'required|max:255',
             "username" => 'required|max:255|min:3|unique:users',
             "email" => 'required|email:dns|unique:users',
+            "gender" => 'required|in:male,female',
+            "hobby" => 'required|array|min:1',
+            "telp" => 'required|max:19',
+            "city" => 'required',
+            "reason" => 'required',
             "password" => 'required|min:5|max:255'
         ]);
-
+    
+        $validate['hobby'] = json_encode($request->hobby); // Convert hobbies to JSON
         $validate['password'] = Hash::make($validate['password']);
-
+    
         User::create($validate);
-
-        // $request->session()->flash('success', 'Registration Successfull! Please Login!');
-
-        return redirect('/login')->with('success', 'Registration Successfull! Please Login!');
+    
+        return redirect('/login')->with('success', 'Registration Successful! Please Login!');
     }
 }

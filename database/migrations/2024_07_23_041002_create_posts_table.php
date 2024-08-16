@@ -11,15 +11,16 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('users', function (Blueprint $table) {
+        Schema::create('posts', function (Blueprint $table) {
             $table->id();
-            $table->string('email')->unique();
-            $table->enum('jenis_kelamin', ['Laki-laki', 'Perempuan']);
-            $table->json('hobi');
-            $table->string('no_telp');
-            $table->string('kota_asal');
-            $table->text('alasan');
-            $table->string('password');
+            $table->foreignId('category_id');
+            $table->foreignId('user_id');
+            $table->string('title');
+            $table->string('slug')->unique();
+            $table->text('image')->nullable();
+            $table->text('excerpt');
+            $table->text('body');
+            $table->timestamp('published_at')->nullable();
             $table->timestamps();
         });
     }

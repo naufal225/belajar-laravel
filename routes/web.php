@@ -70,9 +70,10 @@ Route::get('/dashboard', function() {
 })->middleware("auth");
 
 Route::get('/dashboard/posts', function() {
-    return view('dashboard.index', [
+    return view('dashboard.posts.index', [
         "title" => "Dashboard",
-        "active" => "posts"
+        "active" => "posts",
+        "posts" => Post::where('user_id', Auth::user()->id)->latest()->get()
     ]);
 })->middleware("auth");
 

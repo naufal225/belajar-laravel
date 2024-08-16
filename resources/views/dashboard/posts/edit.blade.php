@@ -4,7 +4,7 @@
     <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
         <div class="col-lg-8">
             
-            <form method="POST" action="/dashboard/posts/{{ $post->slug }}">
+            <form method="POST" action="/dashboard/posts/{{ $post->slug }}" enctype="multipart/form-data">
                 @method("put")
               @csrf
                 <div class="form-group">
@@ -46,7 +46,17 @@
                     </div>
                   @enderror
                 </div>
-                
+                <img class="img-preview img-fluid col-5 my-3" @if($post->image) src="/storage/{{ $post->image }}" @endif class="d-block">
+                <div class="input-group mb-3">
+                  <div class="input-group-prepend">
+                    <span class="input-group-text" id="inputGroupFileAddon01">Upload</span>
+                  </div>
+                  <div class="mb-3">
+                    <label for="image" class="form-label">Input Image</label>
+                    <input class="form-control" name="image" type="file" id="image" onchange="previewImage()">
+                  </div>
+                  
+                </div>
                 <div class="form-group">
                   <input id="body" type="hidden" name="body" value="{{ old('body', $post->body) }}">
                   <trix-editor class="@error('body') is-invalid @enderror" input="body" style="max-height: 200px; overflow-y:scroll;"></trix-editor>
@@ -85,5 +95,20 @@
       document.addEventListener('trix-file-accept', function(e) {
         e.preventDefault();
       });
+
+      function previewImage() {
+        const imgInput = document.querySelector("#image");
+        const imgPreview = document.querySelector(".img-preview");
+
+        imgPreview.style.display = "block";
+
+        const oFReader = new FileReader();
+
+        oFReader.readAsDataURL(image.files[0]);
+
+        oFReader.onload = function (oFREvent) {
+          imgPreview.src = oFREvent.target.result
+        }
+      }
     </script>
 @endsection

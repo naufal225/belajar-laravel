@@ -41,13 +41,14 @@
                     </div>
                   @enderror
                 </div>
+                <img class="img-preview img-fluid col-5 my-3">
                 <div class="input-group mb-3">
                   <div class="input-group-prepend">
                     <span class="input-group-text" id="inputGroupFileAddon01">Upload</span>
                   </div>
                   <div class="mb-3">
-                    <label for="formFile" class="form-label">Default file input example</label>
-                    <input class="form-control" name="image" type="file" id="formFile">
+                    <label for="image" class="form-label">Input Image</label>
+                    <input class="form-control" name="image" type="file" id="image" onchange="previewImage()">
                   </div>
                   
                 </div>
@@ -96,6 +97,21 @@
         console.log('File Name:', fileName); // Debugging
         var label = fileInput.nextElementSibling;
         label.textContent = fileName;
-      })
+      });
+
+      function previewImage() {
+        const imgInput = document.querySelector("#image");
+        const imgPreview = document.querySelector(".img-preview");
+
+        imgPreview.style.display = "block";
+
+        const oFReader = new FileReader();
+
+        oFReader.readAsDataURL(image.files[0]);
+
+        oFReader.onload = function (oFREvent) {
+          imgPreview.src = oFREvent.target.result
+        }
+      }
     </script>
 @endsection

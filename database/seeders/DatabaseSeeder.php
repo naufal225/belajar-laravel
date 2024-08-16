@@ -21,9 +21,9 @@ class DatabaseSeeder extends Seeder
         // ]);
 
         $this->call([
-            UserSeeder::class,
+            // UserSeeder::class,
             CategorySeeder::class,
-            PostSeeder::class
+            // PostSeeder::class
         ]);
 
         Post::factory(10)->create();

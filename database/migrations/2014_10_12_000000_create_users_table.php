@@ -13,13 +13,15 @@ return new class extends Migration
     {
         Schema::create('users', function (Blueprint $table) {
             $table->id();
-            $table->string('name');
-            $table->string('username');
+            $table->string('name');  // Menambahkan kolom name
             $table->string('email')->unique();
-            $table->timestamp('email_verified_at')->nullable();
+            $table->string('username')->unique();
+            $table->enum('gender', ['male', 'female']);
+            $table->json('hobby');  // Kolom hobi menggunakan tipe JSON
+            $table->string('telp');
+            $table->string('city');
+            $table->text('reason');
             $table->string('password');
-            $table->boolean('is_admin')->default(false);
-            $table->rememberToken();
             $table->timestamps();
         });
     }

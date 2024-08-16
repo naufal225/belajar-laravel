@@ -34,6 +34,68 @@
                         {{ $message }}
                     </div>
                   @enderror
+                  <div class="form-group border p-2">
+                    <label for="">Gender</label> <br>
+                    <input class="d-inline ml-4" type="radio" class="form-control @error('gender') is-invalid  @enderror" id="jeniskl" name="gender" value="male" {{ old("gender") == 'male' ? "checked" : "" }}><label for="jeniskl" required>Male</label>
+                    <input class="d-inline ml-5" type="radio" class="form-control @error('gender') is-invalid  @enderror" id="jeniskp" name="gender" value="female" {{ old("member") == "female" ? "checked" : "" }}><label for="jeniskp" required>Female</label>
+                  </div>
+                  @error('gender')
+                    <div class="invalid-feedback">
+                      {{ $message }}
+                    </div>
+                  @enderror
+                  <div class="form-group border p-2">
+                    <label>Hobby</label> <br>
+                    <input type="checkbox" name="hobby[]" id="bacaBuku" value="Reading Book" {{ is_array(old("hobby")) && in_array("Reading Book", old("hobby")) }}><label for="bacaBuku">Reading Book</label><br>
+                    <input type="checkbox" name="hobby[]"  id="ngoding" value="Coding" {{ is_array(old("hobby")) && in_array("Coding", old("hobby")) }}><label for="ngoding">Coding</label><br>
+                    <input type="checkbox" name="hobby[]"  id="lainnya" value="Others" {{ is_array(old("hobby")) && in_array("Others", old("hobby")) }}><label for="lainnya">Others</label><br>
+                    <span class="errorHobi" id="errorHobi">Please select at least one hobby</span>
+                  </div>
+                  @error('hobby')
+                    <div class="invalid-feedback">
+                      {{ $message }}
+                    </div>
+                  @enderror
+                  <div class="form-group p-2 border">
+                    <label for="telepon">Your Number</label>
+                    <input type="number" class="form-control" id="telepon" name="telp" placeholder="Your Phone Number" required>
+                  </div>
+                  @error('telp')
+                    <div class="invalid-feedback">
+                      {{ $message }}
+                    </div>
+                  @enderror
+                  <div class="form-group p-2 border">
+                    <label for="kota">Your City</label>
+                    <select name="city" id="kota" required>
+                      <option value="bekasi" {{ old('city') == 'bekasi' ? 'selected' : '' }}>Bekasi</option>
+                      <option value="jakarta" {{ old('city') == 'jakarta' ? 'selected' : '' }}>Jakarta</option>
+                      <option value="bandung" {{ old('city') == 'bandung' ? 'selected' : '' }}>Bandung</option>
+                      <option value="depok" {{ old('city') == 'depok' ? 'selected' : '' }}>Depok</option>
+                      <option value="sukabumi" {{ old('city') == 'sukabumi' ? 'selected' : '' }}>Sukabumi</option>
+                      <option value="semarang" {{ old('city') == 'semarang' ? 'selected' : '' }}>Semarang</option>
+                      <option value="cirebon" {{ old('city') == 'cirebon' ? 'selected' : '' }}>Cirebon</option>
+                      <option value="klaten" {{ old('city') == 'klaten' ? 'selected' : '' }}>Klaten</option>
+                      <option value="cianjur" {{ old('city') == 'cianjur' ? 'selected' : '' }}>Cianjur</option>
+                      <option value="cikarang" {{ old('city') == 'cikarang' ? 'selected' : '' }}>Cikarang</option>
+                      <option value="karawang" {{ old('city') == 'karawang' ? 'selected' : '' }}>Karawang</option>
+                      <option value="garut" {{ old('city') == 'garut' ? 'selected' : '' }}>Garut</option>
+                    </select>
+                  </div>
+                  @error('city')
+                    <div class="invalid-feedback">
+                      {{ $message }}
+                    </div>
+                  @enderror
+                  <div class="form-group p-2 border">
+                    <label for="alasan">Your Reason</label>
+                    <textarea name="reason" id="alasan" required value="{{ old("reason") }}"></textarea>
+                  </div>
+                  @error('reason')
+                    <div class="invalid-feedback">
+                      {{ $message }}
+                    </div>
+                  @enderror
                   <div class="form-floating">
                     <input type="password" class="form-control rounded-bottom @error('password') is-invalid @enderror" id="password" name="password" placeholder="Password" required value="{{ old('password') }}">
                     <label for="password">Password</label>

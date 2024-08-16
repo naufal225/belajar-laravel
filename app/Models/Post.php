@@ -36,17 +36,19 @@ class Post extends Model
     //     return $posts->firstWhere('slug', $slug);
     // }
 
-    protected $fillable = [
-        'title',
-        'category_id',
-        'user_id',
-        'slug',
-        'image',
-        'excerpt',
-        'body',
-        'author',
-        'published_at',
-    ];
+    // protected $fillable = [
+    //     'title',
+    //     'category_id',
+    //     'user_id',
+    //     'slug',
+    //     'image',
+    //     'excerpt',
+    //     'body',
+    //     'author',
+    //     'published_at',
+    // ];
+
+    protected $guarded = ['id'];
 
     protected $with = ['category', 'user'];
 

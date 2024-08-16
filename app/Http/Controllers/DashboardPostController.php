@@ -16,7 +16,9 @@ class DashboardPostController extends Controller
      */
     public function index()
     {
-        return view('dashboard.posts.index');
+        return view('dashboard.posts.index', [
+            "posts" => Post::where("user_id", Auth::user()->id)->latest()->get()
+        ]);
     }
 
     /**
@@ -48,7 +50,7 @@ class DashboardPostController extends Controller
 
         Post::create($validate);
 
-        return redirect('/dashboard')->with("success", "New post has been added");
+        return redirect('/dashboard/posts')->with("success", "New post has been added");
     }
 
     /**
@@ -75,25 +77,29 @@ class DashboardPostController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, Post $post)
-    {
+    public function update(Request $request, Post $post) {
         $rules = [
             "title" => "required|max:255",
             "category_id" => "required",
-            "body" => "required"
+            "body" => "required",
+            "image" => "nullable|file"
         ];
-
-        if($post->slug != $request->slug) {
+    
+        if ($post->slug != $request->slug) {
             $rules["slug"] = "required|unique:posts";
         }
-
+    
         $validate = $request->validate($rules);
-
-        Post::where("id", $request->id)
-            ->update($validate);
-
-        return redirect('/dashboard')->with("success", "One post has been updated");
+    
+        if ($request->file("image")) {
+            $validate['image'] = $request->file("image")->store("post-images");
+        }
+    
+        $post->update($validate);
+    
+        return redirect('/dashboard/posts')->with("success", "One post has been updated");
     }
+    
 
     /**
      * Remove the specified resource from storage.
