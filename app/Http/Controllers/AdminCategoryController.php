@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Category;
+use Cviebrock\EloquentSluggable\Services\SlugService;
 use Illuminate\Http\Request;
 
 class AdminCategoryController extends Controller
@@ -23,7 +24,7 @@ class AdminCategoryController extends Controller
      */
     public function create()
     {
-        //
+        return view("dashboard.categories.create");
     }
 
     /**
@@ -64,5 +65,12 @@ class AdminCategoryController extends Controller
     public function destroy(Category $category)
     {
         //
+    }
+
+    public function checkSlug(Request $request) {
+        $slug = SlugService::createSlug(Category::class, 'slug', $request->title);
+        return response()->json([
+            "slug" => $slug
+        ]);
     }
 }
