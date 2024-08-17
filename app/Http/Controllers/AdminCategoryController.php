@@ -68,7 +68,7 @@ class AdminCategoryController extends Controller
     }
 
     public function checkSlug(Request $request) {
-        $slug = SlugService::createSlug(Category::class, 'slug', $request->title);
+        $slug = SlugService::createSlug(Category::class, 'slug', $request->category);
         return response()->json([
             "slug" => $slug
         ]);
