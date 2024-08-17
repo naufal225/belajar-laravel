@@ -124,4 +124,10 @@ class DashboardPostController extends Controller
             "slug" => $slug
         ]);
     }
+
+    public function showAllPosts(Request $request) {
+        return view('dashboard.index', [
+            "posts" => Post::latest()->paginate(10)
+        ]);
+    }
 }
