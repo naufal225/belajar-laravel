@@ -14,6 +14,7 @@
         </a>
       </li>
     </ul>
+    @can("admin")
     <h6 class="sidebar-heading d-flex justify-content-between align-items-center px-3 mb-1 mt-4 text-muted">
       <span>Administrator</span>
     </h6>
@@ -25,5 +26,6 @@
         </a>
       </li>
     </ul>
+    @endcan()
   </div>
 </div>
