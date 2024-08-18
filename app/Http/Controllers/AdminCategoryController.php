@@ -32,7 +32,14 @@ class AdminCategoryController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $validateData = $request->validate([
+            "name" => "required|unique:categories",
+            "slug" => "required|unique:categories"
+        ]);
+
+        Category::created($validateData);
+
+        return redirect('/dashboard/categories')->with("success", "New category has been added");
     }
 
     /**

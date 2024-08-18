@@ -8,7 +8,7 @@
         @csrf
         <div class="form-group">
             <label for="category">Category</label>
-            <input type="text" class="form-control @error('category') is-invalid @enderror" id="category" name="category" placeholder="" value="{{ old('category') }}">
+            <input type="text" class="form-control @error('category') is-invalid @enderror" id="category" name="name" placeholder="" value="{{ old('category') }}">
             @error('category')
               <div class="invalid-feedback">
                 {{ $message }}
@@ -24,6 +24,7 @@
               </div>
             @enderror
         </div>
+        <button type="submit">Add Category</button>
     </form>
 
     <script>
