@@ -27,7 +27,7 @@
                 <tr>
                   <th scope="col">#</th>
                   <th scope="col">Category</th>
-                  <th scope="col">Action</th>
+                  {{-- <th scope="col">Action</th> --}}
                 </tr>
               </thead>
               <tbody>
@@ -35,7 +35,7 @@
                     <tr>
                       <td>{{ $loop->iteration }}</td>
                       <td>{{ $category->name }}</td>
-                      <td>
+                      {{-- <td>
                         <a href="/dashboard/posts/{{ $category->slug }}" class="badge bg-info"><span class="text-white" data-feather="eye"></span></a>
                         <a href="/dashboard/posts/{{ $category->slug }}/edit" class="badge bg-warning text-white"><span data-feather="edit"></span></a>
                         <form action="/dashboard/posts/{{ $category->slug }}" method="post" class="d-inline">
@@ -43,7 +43,7 @@
                           @csrf
                           <button class="badge bg-danger text-white border-0" onclick="return confirm('Are You Sure?')"><span data-feather="x-circle"></button>
                         </form>
-                      </td>
+                      </td> --}}
                     </tr>
                 @endforeach
               </tbody>

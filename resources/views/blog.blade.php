@@ -19,7 +19,7 @@
 
     @if($posts->count())
         <div class="card mb-5 text-center">
-            <img class="card-img-top" src="/storage/{{ $posts[0]->image }}" alt="Card image cap">
+          <img class="card-img-top" src={{ asset('storage/'.$posts[0]->image) }} alt="Card image cap">
             <div class="card-body">
               <h5 class="card-title">
                 <a class="text-decoration-none text-black" href="/blog/{{ $posts[0]->slug }}">{{ $posts[0]->title }}</a>
@@ -41,7 +41,7 @@
     @foreach ($posts->skip(1) as $post)
             <div class="col-md-3 mb-4">
                 <div class="card">
-                    <img class="card-img-top" src="/storage/{{ $post->image }}" alt="Card image cap">
+                    <img class="card-img-top" src="/storage/{{$post->image}}" alt="Card image cap">
                     <div class="card-body">
                       <h5 class="card-title">
                         <a class="text-decoration-none" href="/blog/{{ $post->slug }}">{{ $post->title }}</a>

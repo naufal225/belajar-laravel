@@ -45,7 +45,7 @@ class DashboardPostController extends Controller
             "body" => "required"
         ]);
 
-        $validate['image'] = $request->file('image')->store('post-images');
+        $validate['image'] = $request->file('image')->store('post-images', 'public');
         $validate['user_id'] = Auth::user()->id;
         $validate['excerpt'] = Str::limit($request->body, 100, "...");
 

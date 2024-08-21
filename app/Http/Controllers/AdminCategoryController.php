@@ -37,7 +37,7 @@ class AdminCategoryController extends Controller
             "slug" => "required|unique:categories"
         ]);
 
-        Category::created($validateData);
+        Category::create($validateData);
 
         return redirect('/dashboard/categories')->with("success", "New category has been added");
     }
