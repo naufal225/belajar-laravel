@@ -13,11 +13,11 @@ return new class extends Migration
     {
         Schema::create('users', function (Blueprint $table) {
             $table->id();
-            $table->string('name');  // Menambahkan kolom name
+            $table->string('name'); 
             $table->string('email')->unique();
             $table->string('username')->unique();
             $table->enum('gender', ['male', 'female']);
-            $table->json('hobby');  // Kolom hobi menggunakan tipe JSON
+            $table->json('hobby');
             $table->string('telp');
             $table->string('city');
             $table->text('reason');
